@@ -26,6 +26,7 @@ let package = Package(
             url: "https://github.com/aidantwoods/swift-sodium.git",
             .branch("full-clibsodium-build")
         ),
+        .package(url: "https://github.com/apple/swift-crypto.git", from: "3.15.0"),
         .package(
             url: "https://github.com/krzyzanowskim/CryptoSwift.git",
             .upToNextMajor(from: "1.4.2")
@@ -41,13 +42,17 @@ let package = Package(
             dependencies: [
                 .product(name: "Clibsodium", package: "Sodium"),
                 .product(name: "Sodium", package: "Sodium"),
-                "CryptoSwift",
-                "TypedJSON"
+                .product(name: "Crypto", package: "swift-crypto"),
+                .product(name: "CryptoSwift", package: "CryptoSwift"),
+                .product(name: "TypedJSON", package: "TypedJSON")
             ]
         ),
         .testTarget(
             name: "PasetoTests",
-            dependencies: ["Paseto"],
+            dependencies: [
+                .target(name: "Paseto"),
+                .product(name: "Crypto", package: "swift-crypto"),
+            ],
             resources: [
                 .copy("TestVectors")
             ]

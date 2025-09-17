@@ -1,6 +1,6 @@
 import XCTest
 @testable import Paseto
-import CryptoKit
+import Crypto
 import Sodium
 
 class KeyTest: XCTestCase {
