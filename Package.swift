@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:6.2
 //
 //  Package.swift
 //  Paseto
@@ -9,6 +9,7 @@
 
 
 import PackageDescription
+
 
 let package = Package(
     name: "Paseto",
@@ -21,11 +22,7 @@ let package = Package(
         .library(name: "Paseto", targets: ["Paseto"]),
     ],
     dependencies: [
-        .package(
-            name: "Sodium",
-            url: "https://github.com/aidantwoods/swift-sodium.git",
-            .branch("full-clibsodium-build")
-        ),
+        .package(url: "https://github.com/martiall/swift-sodium", branch: "master"),
         .package(
             url: "https://github.com/krzyzanowskim/CryptoSwift.git",
             .upToNextMajor(from: "1.4.2")
@@ -39,8 +36,8 @@ let package = Package(
         .target(
             name: "Paseto",
             dependencies: [
-                .product(name: "Clibsodium", package: "Sodium"),
-                .product(name: "Sodium", package: "Sodium"),
+                .product(name: "Clibsodium", package: "swift-sodium"),
+                .product(name: "Sodium", package: "swift-sodium"),
                 "CryptoSwift",
                 "TypedJSON"
             ]
