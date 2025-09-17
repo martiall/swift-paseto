@@ -1,5 +1,5 @@
 import Foundation
-import CryptoKit
+import Crypto
 import CryptoSwift
 
 fileprivate let zeroBn = BigUInteger(0)
